@@ -1,5 +1,7 @@
-function returnFive() {
+var returnFive = function() {
     return 5;
 }
 
-module.exports = returnFive
+module.exports = {
+    returnFive: returnFive
+};

@@ -1,5 +1,4 @@
 const assert = require('assert');
-const sinon = require('sinon');
 const code = require('../scripts/code');
 
 describe('Test that the function returns correct value', function () {

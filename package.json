@@ -4,10 +4,11 @@
   "description": "Scripts for TQ2017 presentation",
   "author": "Josh Roach",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha \"js\\tests\\*.js\""
   },
   "devDependencies": {
     "assert": "^1.4.1",
+    "mocha": "^3.4.2",
     "sinon": "^2.3.5"
   }
 }
