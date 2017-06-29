@@ -1,0 +1,13 @@
+{
+  "name": "TQ2017",
+  "version": "1.0.0",
+  "description": "Scripts for TQ2017 presentation",
+  "author": "Josh Roach",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "sinon": "^2.3.5"
+  }
+}
