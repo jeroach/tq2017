@@ -1,8 +1,9 @@
 const fs = require('fs');
 const sinon = require('sinon');
+const assert = require('assert');
 
 function getFilenamesInDirectory(directory) {
-    fileNames = [];
+    let fileNames = [];
     fs.readdir(directory, (err, files) => {
         files.forEach(file => {
             fileNames.push(file);
@@ -12,19 +13,39 @@ function getFilenamesInDirectory(directory) {
 }
 
 describe('Test that the function is mocked correctly', function () {
-    let mock;
+    let fsMock;
     before(function (done) {
-        mock = sinon.mock(fs);
+        fsMock = sinon.mock(fs);
         done();
     });
     after(function (done) {
-        mock.restore();
+        fsMock.restore();
         done();
     });
 
     it('mock should be called', function () {
-        const expect = mock.expects('readdir').once().withArgs('path');
-        var result = getFilenamesInDirectory('path');
+        const expect = fsMock.expects('readdir').once().withArgs('path');
+        const result = getFilenamesInDirectory('path');
         expect.verify();
+    });
+});
+
+describe('Test that the function is stubbed correctly', function () {
+    const files = ['a.txt', 'b.txt', 'c.png'];
+    let fsStub;
+    before(function (done) {
+        fsStub = sinon.stub(fs, 'readdir').callsFake(function(path, callback) {
+            callback(null, files);
+        });
+        done();
+    });
+    after(function (done) {
+        fsStub.restore();
+        done();
+    });
+
+    it('stub should return expected value', function () {
+        const result = getFilenamesInDirectory('path');
+        assert.deepEqual(result, files); // structual equality (checks that operands are equivalent)
     });
 });
