@@ -4,7 +4,7 @@
   "description": "Scripts for TQ2017 presentation",
   "author": "Josh Roach",
   "scripts": {
-    "test": "mocha \"js\\tests\\*.js\""
+    "test": "mocha \"js\\*.js\""
   },
   "devDependencies": {
     "assert": "^1.4.1",
