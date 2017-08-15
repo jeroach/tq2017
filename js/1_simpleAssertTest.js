@@ -7,6 +7,6 @@ function returnFive() {
 describe('Test that the function returns correct value', function () {
     it('should return 5', function () {
         const result = returnFive();
-        assert.equal(5, result);
+        assert.equal(result, 5);
     });
 });
