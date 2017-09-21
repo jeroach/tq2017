@@ -11,6 +11,8 @@ def get_filenames_in_directory(directory):
     return fileNames
 
 
+# https://docs.pytest.org/en/latest/parametrize.html
+# https://docs.python.org/3/library/unittest.mock.html
 @mock.patch('os.walk')
 @pytest.mark.parametrize('files,expected_count', [
   (['a.txt', 'b.txt', 'c.png'], 3),
@@ -25,4 +27,4 @@ def test_with_mocked_logic_and_test_cases(mockwalk, files, expected_count):
     result = get_filenames_in_directory('path')
     assert len(result) == expected_count
     assert result == files
-    assert mockwalk.call_count == 1
+    mockwalk.assert_called_once_with('path')

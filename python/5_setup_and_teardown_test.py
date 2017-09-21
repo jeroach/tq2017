@@ -1,9 +1,8 @@
-# Tests are isolated
-
 import os
 import pytest
 
 
+# https://docs.pytest.org/en/latest/fixture.html
 @pytest.fixture(scope='class')
 def setup_file(request):
     f = open('test_file.txt', 'a+')

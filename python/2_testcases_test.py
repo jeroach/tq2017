@@ -8,6 +8,7 @@ def merge_2_lists(listA, listB):
     return mergedList
 
 
+# https://docs.pytest.org/en/latest/parametrize.html
 @pytest.mark.parametrize('listA,listB,expected_result', [
   (['A', 'B'], ['C', 'D'], ['A', 'B', 'C', 'D']),
   (['A', 'A'], ['A', 'B'], ['A', 'B']),
