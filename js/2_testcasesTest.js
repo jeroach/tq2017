@@ -6,6 +6,7 @@ function merge2Lists(listA, listB) {
     return mergedList;
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 describe('Test that the lists are correctly merged', function () {
     const tests = [
         {listA: ['A', 'B'], listB: ['C', 'D'], expected: ['A', 'B', 'C', 'D']},

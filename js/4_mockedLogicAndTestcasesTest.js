@@ -12,6 +12,8 @@ function getFilenamesInDirectory(directory) {
     return fileNames;
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+// http://sinonjs.org/releases/v3.3.0/stubs/
 describe('Test that testcases work in parallel with stubbed logic', function () {
     const tests = [
         {files: ['a.txt', 'b.txt', 'c.png']},

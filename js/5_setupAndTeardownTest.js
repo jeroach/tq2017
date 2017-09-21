@@ -12,6 +12,7 @@ function getFilenamesInDirectory(directory) {
     return fileNames;
 }
 
+// https://mochajs.org/#hooks
 describe('Test that the function is mocked correctly', function () {
     let fsMock;
     before(function (done) {

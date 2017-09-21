@@ -12,6 +12,7 @@ function getFilenamesInDirectory(directory) {
     return fileNames;
 }
 
+// http://sinonjs.org/releases/v3.3.0/mocks/
 describe('Test that the function is mocked correctly', function () {
     it('mock should be called', function () {
         let fsMock = sinon.mock(fs);
@@ -24,6 +25,7 @@ describe('Test that the function is mocked correctly', function () {
     });
 });
 
+// http://sinonjs.org/releases/v3.3.0/stubs/
 describe('Test that the function is stubbed correctly', function () {
     it('stub should return expected value', function () {
         const files = ['a.txt', 'b.txt', 'c.png'];
@@ -33,7 +35,7 @@ describe('Test that the function is stubbed correctly', function () {
 
         const result = getFilenamesInDirectory('path');
         assert.deepEqual(result, files); // structual equality (checks that operands are equivalent)
-        
+
         fsStub.restore();
     });
 });
