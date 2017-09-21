@@ -20,3 +20,4 @@ def test_with_mocked_logic(mockwalk):
     result = get_filenames_in_directory('path')
     assert len(result) == 3
     assert result == files
+    assert mockwalk.call_count == 1

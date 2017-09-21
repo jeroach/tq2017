@@ -1,20 +1,35 @@
 import os
 import pytest
 
-value = 5
+
+@pytest.fixture
+def setup_file():
+    f = open('test_file.txt', 'a+')
+    f.write('Some text')
+    f.seek(0)  # needed for Windows specific bug
+
+    yield f
+
+    print('Closing and deleting file')
+    f.close()
+    os.remove('test_file.txt')
 
 
-@pytest.fixture(autouse=True)
-def setup_and_teardown():
-    value = 7
-    yield
-    value = 5
+def test_1_with_setup_and_teardown(setup_file):
+    text = setup_file.read()
+    assert text == 'Some text'
+
+    setup_file.write(' More text')
+    setup_file.seek(0)  # needed for Windows specific bug
+    new_text = setup_file.read()
+    assert new_text == 'Some text More text'
 
 
-def return_value():
-    return value
+def test_2_with_setup_and_teardown(setup_file):
+    text = setup_file.read()
+    assert text == 'Some text'
 
-
-def test_setup_and_teardown(setup_and_teardown):
-    expected_result = return_value()
-    assert 5 == expected_result
+    setup_file.write(' Different text')
+    setup_file.seek(0)  # needed for Windows specific bug
+    new_text = setup_file.read()
+    assert new_text == 'Some text Different text'

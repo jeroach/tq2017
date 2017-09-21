@@ -13,27 +13,29 @@ function getFilenamesInDirectory(directory) {
 }
 
 describe('Test that the function is mocked correctly', function () {
-    it('mock should be called', function () {
-        let fsMock = sinon.mock(fs);
+    let fsMock;
+    before(function (done) {
+        fsMock = sinon.mock(fs);
+        done();
+    });
+    after(function (done) {
+        fsMock.restore();
+        done();
+    });
 
+    it('mock should be called', function () {
         const expect = fsMock.expects('readdir').once().withArgs('path');
         const result = getFilenamesInDirectory('path');
         expect.verify();
-
-        fsMock.restore();
     });
-});
-
-describe('Test that the function is stubbed correctly', function () {
-    it('stub should return expected value', function () {
-        const files = ['a.txt', 'b.txt', 'c.png'];
-        let fsStub = sinon.stub(fs, 'readdir').callsFake(function(path, callback) {
-            callback(null, files);
-        });
-
+    it('mock should be called again', function () {
+        const expect = fsMock.expects('readdir').once().withArgs('path');
         const result = getFilenamesInDirectory('path');
-        assert.deepEqual(result, files); // structual equality (checks that operands are equivalent)
-        
-        fsStub.restore();
+        expect.verify();
+    });
+    it('mock should be called with a different path', function () {
+        const expect = fsMock.expects('readdir').once().withArgs('anotherPath');
+        const result = getFilenamesInDirectory('anotherPath');
+        expect.verify();
     });
 });
